@@ -4,6 +4,7 @@ import {
   SCreateAdmin,
   SUpdateAdmin,
   SDeleteAdmin,
+  SGetAllAdmins,
 } from "../services/auth.service";
 
 export const CLogin = async (
@@ -65,6 +66,20 @@ export const CDeleteAdmin = async (
     const id = parseInt(req.params.id);
 
     const result = await SDeleteAdmin(id);
+
+    res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const CGetAllAdmins = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const result = await SGetAllAdmins();
 
     res.status(200).json(result);
   } catch (error) {

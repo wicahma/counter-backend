@@ -1,7 +1,11 @@
 import express from "express";
 import cors from "cors";
 import adminRouter from "./routes/auth.router";
+import { connectRedis } from "./configs/redis.config";
+import { initializeCronJobs } from "./configs/queue.config";
 
+connectRedis();
+initializeCronJobs();
 const app = express();
 
 app.use(cors());
